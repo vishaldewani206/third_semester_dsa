@@ -36,15 +36,11 @@ class Node {
         return start;
     }
 
-
-
-
 }
 
 
 
 public class Chain {
-
 
     //print
     public static void printList(Node start){
@@ -94,6 +90,26 @@ public class Chain {
         return start;
     }
 
+    static Node replace(Node start, int x, int y){
+        if(start == null || start.data > x){
+            return start;
+        }
+        if(start.data  == x){
+            start.data = y;
+            return start;
+        }
+        for(Node i = start; i.next != null; i = i.next){
+            if(i.next.data > x){
+                break;
+            }
+            if(i.next.data == x){
+                i.next.data = y;
+                break;
+            }
+        }
+        return start;
+    }
+
 
     public static void main(String[] args) {
 //        Node p = start;
@@ -111,14 +127,17 @@ public class Chain {
         start = Node.insert(start, 5);
         start = Node.insert(start, 6);
 
-        printList(start);
+        //
+        // printList(start);
 
-        printEven(start);
+        //printEven(start);
 
         start = delete(start, 1);
 
-        printList(start);
+        //printList(start);
 
+        start = replace(start, 4, 5);
+        printList(start);
 
     }
 }

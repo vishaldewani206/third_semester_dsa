@@ -1,6 +1,8 @@
 package linked_list;
 
 // linked list with objects as data. object will be of users (HW)
+// sublist (HW 2)
+// list with 100 elements and half it
 
 class Node1 {
     String data;
@@ -9,9 +11,6 @@ class Node1 {
     Node1(String data){
         this.data = data;
     }
-
-
-
 
 }
 
