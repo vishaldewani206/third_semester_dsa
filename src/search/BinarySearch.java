@@ -1,4 +1,9 @@
 package search;
+/*
+BASIC CONCEPT
+Binary search finds an element by repeatedly dividing a sorted array into two halves.
+It checks the middle element and searches only the half where the target can be.
+*/
 
 public class BinarySearch {
 
@@ -27,8 +32,8 @@ public class BinarySearch {
 
         int[] arr2 = {-1, 0, 3, 5, 9, 12}; //even
 
-        System.out.println(binarySearch(arr1,12));
-        System.out.println(binarySearch(arr2,4));
+        System.out.println("Index of 12: "+ binarySearch(arr1,12));
+        System.out.println("Index of 3: " + binarySearch(arr2,3));
 
     }
 }

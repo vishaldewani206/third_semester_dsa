@@ -1,5 +1,14 @@
 package queue;
 
+/*
+BASIC CONCEPT
+A doubly linked list stores data in nodes.
+Each node has links to both the previous and next node.
+
+A queue follows FIFO (First In, First Out).
+The first element added is the first one removed.
+*/
+
 public class LinkedQueue implements Queue{
     private int size;
     static class Node{
@@ -17,7 +26,7 @@ public class LinkedQueue implements Queue{
         }
     }
 
-    public Node head = new Node(null);
+    Node head = new Node(null);
 
     @Override
     public int getSize() {
@@ -48,6 +57,37 @@ public class LinkedQueue implements Queue{
     public Object first(){
         if(isEmpty()) throw new IllegalStateException("Queue is empty");
         return head.next.data;
+    }
+
+    public String toString(){
+        if(isEmpty()) throw new IllegalStateException("Queue is empty");
+
+        StringBuilder sb = new StringBuilder();
+        Node temp = head;
+        while(temp.next != head){
+            sb.append(temp.next.data).append(" ");
+            temp = temp.next;
+        }
+
+        return sb.toString();
+
+    }
+
+    public static void main(String[] args) {
+        LinkedQueue linkedQueue = new LinkedQueue();
+
+        linkedQueue.add(1);
+        linkedQueue.add(8);
+        linkedQueue.add(10);
+        linkedQueue.add(0);
+        linkedQueue.add(5);
+
+        System.out.println("Queue: OUT <- " + linkedQueue + "<- IN");
+        linkedQueue.remove();
+        System.out.println("Queue after remove: " + linkedQueue);
+        System.out.println("Queue size: " + linkedQueue.getSize());
+        System.out.println("Queue first value: " + linkedQueue.first());
+
     }
 
 

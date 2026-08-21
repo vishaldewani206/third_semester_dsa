@@ -1,24 +1,35 @@
 package linked_list;
 import java.util.ArrayList;
 
-class Node {
-    int data;
-    Node next;
+/*
+BASIC CONCEPT
+A linked list stores elements in nodes.
+Each node contains data and a link to the next node and
+the last node is null which means end of the list.
+*/
 
-    Node(int data){
-        this.data = data;
+
+
+public class Chain {
+    static class Node {
+        int data;
+        Node next;
+
+        Node(int data, Node next){
+            this.data = data;
+            this.next = next;
+        }
+
     }
 
-    Node(int data, Node next){
-        this.data = data;
-        this.next = next;
-    }
 
+    static int count = 0;
 
-    static Node  insert(Node start, int x){
-        // when inserting first element or the value
-        // is smaller than first element's value
+    static Node insert(Node start, int x){
+        // when inserting first element or
+        // the given value (x) is smaller than first node's value
         if(start == null || start.data > x){
+            count++;
             start = new Node(x, start);
             return start;
         }
@@ -35,18 +46,12 @@ class Node {
         }
 
         p.next = new Node(x, p.next);
-
+        count++;
         return start;
     }
 
-}
-
-
-
-public class Chain {
-    int count = 0;
     //print
-    public static void printList(Node start){
+    static void printList(Node start){
         if(start == null){
             System.out.println("List is empty");
             return;
@@ -60,7 +65,8 @@ public class Chain {
         System.out.println("NULL");
     }
 
-    public static void printEven(Node start){
+    // print only even numbers from list
+    static void printEven(Node start){
         ArrayList<Integer> arr = new ArrayList<>();
         for(Node i = start; i != null; i = i.next ){
             arr.add(i.data);
@@ -73,14 +79,15 @@ public class Chain {
         }
     }
 
-
+    //delete a node
     static Node delete(Node start, int x){
-        //list doesn't exist or value not exists
+        //list doesn't exist or value (x) is not in the list
         if(start == null || start.data > x){
             return start;
         }
         //if value exists on first node
         if(start.data  == x){
+            count--;
             return start.next;
         }
         for(Node i = start; i.next != null; i = i.next){
@@ -88,6 +95,7 @@ public class Chain {
                 break;
             }
             if(i.next.data == x){
+                count--;
                 i.next = i.next.next;
                 break;
             }
@@ -95,6 +103,7 @@ public class Chain {
         return start;
     }
 
+    // replace a value in a node
     static Node replace(Node start, int x, int y){
         if(start == null || start.data > x){
             return start;
@@ -114,21 +123,22 @@ public class Chain {
         }
         return start;
     }
-//reverse, slicing, insert, sum, sublist, merge
 
-    public static Node merge(Node firstList, Node secondList){
+    // combine two lists and return the combined list
+    static Node merge(Node firstList, Node secondList){
         Node mergedList = firstList;
 
         Node temp2 = secondList;
         while(temp2 != null){
-            mergedList = Node.insert(mergedList, temp2.data);
+            mergedList = insert(mergedList, temp2.data);
             temp2 = temp2.next;
         }
         return mergedList;
     }
 
 
-    public static int sum(Node start){
+    // sum of all the values of list
+    static int sum(Node start){
         int total = 0;
         Node p = start;
         while(p != null){
@@ -138,7 +148,8 @@ public class Chain {
         return total;
     }
 
-    public static void reverse(Node start){
+    // reverse the list
+    static void reverse(Node start){
         ArrayList<Integer> temp_arr = new ArrayList<>();
         Node p = start;
         while(p != null){
@@ -152,7 +163,8 @@ public class Chain {
         System.out.println();
     }
 
-    public static Node sublist(Node start, int p, int q){
+    // return a portion of the list
+    static Node sublist(Node start, int p, int q){
         if(start == null || p < 0 || p > q ){
             return null;
         }
@@ -162,7 +174,7 @@ public class Chain {
 
         while(current != null && counter <= q){
             if (counter >= q){
-                newList = Node.insert(newList, current.data);
+                newList = insert(newList, current.data);
             }
             current = current.next;
             counter++;
@@ -175,20 +187,14 @@ public class Chain {
 
 
     public static void main(String[] args) {
-//        Node p = start;
-//        for(int i =2; i < 5; i++){
-//            p.next = new Node(i *10);
-//            p = p.next;
-//        }
-
         Node start = null;
 
-        start = Node.insert(start, 1);
-        start =  Node.insert(start, 2);
-        start =  Node.insert(start, 3);
-        start = Node.insert(start, 4);
-        start = Node.insert(start, 5);
-        start = Node.insert(start, 6);
+        start = insert(start, 1);
+        start =  insert(start, 2);
+        start =  insert(start, 3);
+        start = insert(start, 4);
+        start = insert(start, 5);
+        start = insert(start, 6);
 
 
         start = delete(start, 1);
@@ -196,16 +202,18 @@ public class Chain {
         start = replace(start, 4, 5);
 
         Node start2 = null;
-        start2 = Node.insert(start2, 8);
-        start2 = Node.insert(start2, 4);
-        start2 = Node.insert(start2, 10);
+        start2 = insert(start2, 8);
+        start2 = insert(start2, 4);
+        start2 = insert(start2, 10);
 
         Node mergedList = merge(start, start2);
 
+        System.out.print("List: ");
         printList(mergedList);
 
-        System.out.println(sum(mergedList));
+        System.out.println("Sum of values: " + sum(mergedList));
 
+        System.out.print("Reversed List: ");
         reverse(start);
 
     }

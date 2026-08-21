@@ -2,23 +2,23 @@ package linked_list;
 
 
 public class Test {
-    public class Node4 {
+    static class Node {
         int data;
-        Node4 next;
+        Node next;
 
-        Node4(int data, Node4 next){
+        Node(int data, Node next){
             this.data = data;
             this.next = next;
         }
     }
 
 
-    public void sumAndAvg(Node4 start, Node4 second){
+    void sumAndAvg(Node start, Node second){
         int total = 0;
         int count = 0;
 
-        Node4 p = start;
-        Node4 q = second;
+        Node p = start;
+        Node q = second;
 
         while(p != null){
             total += p.data;
@@ -30,15 +30,16 @@ public class Test {
             count++;
             q = q.next;
         }
-        float avg = total / count;
+        float avg = (float) total / count;
         System.out.println("Total: "+ total);
         System.out.println("Avg: " + avg);
     }
 
-    public void printing(Node4 first, Node4 second){
-        Node4 p = first;
-        Node4 q = second;
+    void printing(Node first, Node second){
+        Node p = first;
+        Node q = second;
 
+        System.out.print("Print both lists together: ");
         while(p != null && q != null){
             System.out.print(p.data + " " + q.data + " ");
             p = p.next;
@@ -47,39 +48,39 @@ public class Test {
         System.out.println();
     }
 
-    public void lastElm(Node4 first, Node4 second){
-        Node4 p = first;
-        Node4 q = second;
+    void lastElm(Node first, Node second){
+        Node p = first;
+        Node q = second;
 
-        Node4 temp = null;
+        Node temp = null;
 
         while(p.next != null){
             temp = p;
             p = p.next;
         }
-        System.out.println("Second Last:" + temp.data);
+        System.out.println("Second Last Value: " + temp.data);
 
         while(q.next != null){
             temp = q;
             q = q.next;
         }
-        System.out.println("Second last of second:" + temp.data
+        System.out.println("Second last value of second list: " + temp.data
         );
 
     }
 
 
-     Node4  insert(Node4 start, int x){
+     Node  insert(Node start, int x){
         // when inserting first element or the value
         // is smaller than first element's value
         if(start == null || start.data > x){
-            start = new Node4(x, start);
+            start = new Node(x, start);
             return start;
         }
 
         //inserting when one or more node exists
 
-        Node4 p = start;
+        Node p = start;
 
         while(p.next != null){
             if(p.next.data > x){
@@ -88,18 +89,18 @@ public class Test {
             p = p.next;
         }
 
-        p.next = new Node4(x, p.next);
+        p.next = new Node(x, p.next);
 
         return start;
     }
     public static void main(String[] args) {
         Test m = new Test();
-        Node4 start = null;
+        Node start = null;
         start = m.insert(start, 4);
         start = m.insert(start, 8);
         start = m.insert(start, 12);
         start = m.insert(start, 16);
-        Node4 second = null;
+        Node second = null;
         second = m.insert(second, 6);
         second = m.insert(second, 9);
         second = m.insert(second, 11);
