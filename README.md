@@ -10,6 +10,7 @@ Current topics include:
 - ✅ 2D Arrays
 - ✅ Binary Search
 - ✅ Linked Lists
+- ✅ Stack
 
 More topics will be added throughout the semester, including:
 
@@ -31,6 +32,7 @@ DSA-Java/
 ├── search/
 ├── linked_lists/
 ├── stack/
+├── queue/
 └── ...
 ```
 
