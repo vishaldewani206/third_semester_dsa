@@ -92,7 +92,7 @@ public class LinkedQueue implements Queue{
 
         int[] arr = new int[n];
 
-        Node temp = head.prev;
+        Node temp = head.next;
         int i = 0;
         while(temp != head){
             if(i == n){
@@ -100,7 +100,7 @@ public class LinkedQueue implements Queue{
             }
             arr[i] = (int) temp.data;
             i++;
-            temp = temp.prev;
+            temp = temp.next;
         }
 
         return arr;
