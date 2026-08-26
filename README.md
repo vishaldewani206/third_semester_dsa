@@ -11,11 +11,10 @@ Current topics include:
 - ✅ Binary Search
 - ✅ Linked Lists
 - ✅ Stack
+- ✅ Queues
 
 More topics will be added throughout the semester, including:
 
-- Stacks
-- Queues
 - Trees
 - Hash Tables
 - Graphs
