@@ -2,14 +2,10 @@ package queue;
 
 public class ArrayQueue implements Queue{
     private Object[] elements;
-    private int front;
-    private int rear;
     private int size;
 
     ArrayQueue(int capacity){
         elements = new Object[capacity];
-        front = 0;
-        rear = 0;
         size = 0;
     }
 
@@ -21,12 +17,16 @@ public class ArrayQueue implements Queue{
     @Override
     public void add(Object obj) {
         if(getSize() == elements.length){
-            throw new IllegalStateException("Queue is full");
+            resize();
         }
-
-        elements[rear] = obj;
-        rear = (rear + 1) % elements.length;
+        elements[size] = obj;
         size++;
+    }
+
+    public void resize(){
+        Object[] tempArr = elements;
+        elements = new Object[2 * tempArr.length]; //double the size
+        System.arraycopy(tempArr, 0, elements, 0, getSize()); // copy all the elem from tempArr[] to elements[]
     }
 
     @Override
@@ -34,21 +34,15 @@ public class ArrayQueue implements Queue{
         if(isEmpty()){
             throw new IllegalStateException("Queue is empty");
         }
-        Object data = elements[front];
-        elements[front] = null;
-        front = (front + 1) % elements.length;
-        size--;
+        Object data = elements[0];
+        for (int i = 0; i < getSize() - 1; i++) {
+            elements[i] = elements[i + 1];
+        }
+        elements[--size] = null;
+
         return data;
     }
 
-
-    public Object peek(){
-        if(isEmpty()){
-            throw new IllegalStateException("Queue is empty");
-        }
-
-        return elements[front];
-    }
 
     public boolean isEmpty(){
         return size == 0;
@@ -57,10 +51,30 @@ public class ArrayQueue implements Queue{
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < getSize(); i++) {
-            int index = (front + i) % elements.length;
-            sb.append(elements[index]).append(" ");
+            sb.append(elements[i]).append(" ");
         }
         return sb.toString();
+    }
+
+    public Object first(){
+        if (isEmpty()) throw new IllegalStateException("Queue is empty");
+        return elements[0];
+    }
+
+    public Object last(){
+        if (isEmpty()) throw new IllegalStateException("Queue is empty");
+        return elements[getSize() - 1];
+    }
+
+    public boolean equal(ArrayQueue q){
+        if(getSize() != q.getSize()) return false;
+
+        for (int i = 0; i < getSize(); i++) {
+            if(elements[i] != q.elements[i]){
+                return  false;
+            }
+        }
+        return true;
     }
 
     public static void main(String[] args) {
@@ -78,10 +92,19 @@ public class ArrayQueue implements Queue{
         arrayQueue.add(4);
         arrayQueue.add(6);
         System.out.println("After add: " + arrayQueue);
-        System.out.println("Peek: " + arrayQueue.peek());
+        System.out.println("First: " + arrayQueue.first());
 
 //      at this point queue is full so if you
 //      add more elements it will throw exception
+
+        ArrayQueue arrayQueue2 = new ArrayQueue(5);
+        arrayQueue2.add(3);
+        arrayQueue2.add(2);
+        arrayQueue2.add(5);
+        arrayQueue2.add(4);
+        arrayQueue2.add(6);
+
+        System.out.println("Equal: " + arrayQueue.equal(arrayQueue2));
 
     }
 }
