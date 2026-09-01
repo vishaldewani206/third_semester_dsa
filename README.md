@@ -32,6 +32,7 @@ DSA-Java/
 ├── linked_lists/
 ├── stack/
 ├── queue/
+├── hashtable/
 └── ...
 ```
 
