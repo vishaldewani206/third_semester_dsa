@@ -138,7 +138,7 @@ public class StackWithLinkedList implements Stack {
         }
         Node newList = temp.next;
         temp.next = null; //splits the list
-        return new Object[]{top, newList};
+        return new Object[]{temp, newList};
     }
 
 

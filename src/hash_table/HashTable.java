@@ -1,6 +1,8 @@
 package hash_table;
 
 //put, get, remove, size, hash
+// linear probing ->
+// quadratic probing ->
 
 public class HashTable {
      Entry[] entries = new Entry[11];
@@ -31,6 +33,49 @@ public class HashTable {
     public Object put(Object key, Object value){
         entries[hash(key)] = new Entry(key, value);
         size++;
+        return null;
+    }
+
+    public Object put2(Object key, Object value){
+        int h = hash(key);
+        for (int i = 0; i < entries.length; i++) {
+            int j = (h + i) % entries.length;
+
+            Entry entry = entries[j];
+
+            if(entry == null){
+                entries[j] = new Entry(key, value);
+                size++;
+                return  null;
+            }
+        }
+
+        throw new IllegalStateException("Table is full");
+    }
+
+    public Object get2(Object key){
+        int h = hash(key);
+        Entry NIL = new Entry(null, null);
+
+        for (int i = 0; i < entries.length; i++) {
+            int j = (h+i) % entries.length;
+
+            Entry entry = entries[j];
+
+            if(entry == null){
+                break;
+            }
+
+            if(entry == NIL){
+                continue;
+            }
+
+            if(entry.key.equals(key)){
+                return entry.value;
+            }
+
+        }
+
         return null;
     }
 

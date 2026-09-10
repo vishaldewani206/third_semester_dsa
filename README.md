@@ -12,11 +12,11 @@ Current topics include:
 - ✅ Linked Lists
 - ✅ Stack
 - ✅ Queues
+- ✅ Hash Tables
 
 More topics will be added throughout the semester, including:
 
 - Trees
-- Hash Tables
 - Graphs
 - Sorting Algorithms
 - Searching Algorithms
@@ -32,7 +32,7 @@ DSA-Java/
 ├── linked_lists/
 ├── stack/
 ├── queue/
-├── hashtable/
+├── hash_table/
 └── ...
 ```
 

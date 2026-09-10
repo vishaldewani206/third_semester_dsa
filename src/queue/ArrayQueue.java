@@ -38,7 +38,7 @@ public class ArrayQueue implements Queue{
         for (int i = 0; i < getSize() - 1; i++) {
             elements[i] = elements[i + 1];
         }
-        elements[--size] = null;
+        --size;
 
         return data;
     }

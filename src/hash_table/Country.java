@@ -17,19 +17,19 @@ public class Country {
 
 
     public static void main(String[] args) {
-        Country pk = new Country("pk", "Urdu", 1200);
-        Country in = new Country("in", "Hindi", 4000);
-        Country id = new Country("id", "bahasa", 3000);
-        Country sa = new Country("sa", "Arabic", 1000);
+        Country pk = new Country("Pakistan", "Urdu", 1200);
+        Country in = new Country("India", "Hindi", 4000);
+        Country id = new Country("Indonesia", "bahasa", 3000);
+        Country sa = new Country("Saudi Arabia", "Arabic", 1000);
 
         HashTable hb = new HashTable();
 
-        hb.put(120, pk);
-        hb.put(121, in);
-        hb.put(122, id);
-        hb.put(123, sa);
+        hb.put("pk", pk);
+        hb.put("in", in);
+        hb.put("id", id);
+        hb.put("sa", sa);
 
-        System.out.println(hb.get(122));
-        System.out.println(hb.get(123));
+        System.out.println(hb.get("pk"));
+        System.out.println(hb.get("in"));
     }
 }
