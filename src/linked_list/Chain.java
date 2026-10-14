@@ -132,6 +132,7 @@ public class Chain {
         while(temp2 != null){
             mergedList = insert(mergedList, temp2.data);
             temp2 = temp2.next;
+
         }
         return mergedList;
     }

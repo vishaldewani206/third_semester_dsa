@@ -1,40 +1,42 @@
 package linked_list;
 
 public class Practice {
-    public class Node3 {
+    static class Node{
         int data;
-        Node3 next;
+        Node next;
 
-        public Node3(int data, Node3 next){
+        Node(int data, Node next){
             this.data = data;
             this.next = next;
         }
-
-        public Node3 insert(int x, Node3 start){
-            if(start == null || start.data > x){
-                start = new Node3(x, start);
-                return start;
-            }
-
-            Node3 p = start;
-
-            while(p.next != null){
-                if(p.next.data > x){
-                    break;
-                }
-                p = p.next;
-            }
-            p.next = new Node3(x, p.next);
-            return start;
-        }
     }
 
+    static Node insert(Node start, int x){
+        if(start == null || start.data > x){
+            start = new Node(x, start);
+            return start;
+        }
 
+        Node temp = start;
+
+        while(temp.next != null){
+            if(temp.next.data > x ){
+                break;
+            }
+            temp = temp.next;
+        }
+
+        temp.next = new Node(x, temp.next);
+
+        return start;
+    }
 
     public static void main(String[] args) {
-        Node3 start = null;
-        start = start.insert(10, start);
-        start = start.insert(20, start);
+        Node start = null;
+
+        start = insert(start, 1);
+        start = insert(start, 2);
+
 
     }
 

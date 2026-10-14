@@ -31,10 +31,12 @@ public class Array {
         return arr2;
     }
 
-    public static void copy(int[] arr){
-        int[] arr2 = new int[arr.length];
+    public static void copy(int[] arr, int start, int end){
+        int[] arr2 = new int[end - start];
 
-        System.arraycopy(arr, 0, arr2, 0, arr.length);
+        for(int i = start; i < end; i++){
+            arr2[i] = arr[i];
+        }
 
         for(int i: arr2){
             System.out.println(i);
@@ -51,7 +53,7 @@ public class Array {
         }
 
         //copy array
-        copy(arr);
+        copy(arr, 2, 3);
 
         //insert
         int[] inserted = insert(arr,25,2);
